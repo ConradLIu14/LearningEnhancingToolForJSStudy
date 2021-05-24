@@ -1,0 +1,5 @@
+The tabindex global attribute indicates that its element can be focused, and where it participates in sequential keyboard navigation (usually with the Tab key, 
+hence the name). like: <div tabindex = "0">
+a tabindex of -1 would be best when allows the element to be focused but remain inaccessible by the tab key.
+
+

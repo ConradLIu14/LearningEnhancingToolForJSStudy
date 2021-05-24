@@ -1,0 +1,32 @@
+[为组件添加JSX语法]
+首先建立能使用 markup 的环境: 
+两种方法:1. 一种是和react 一样的基于 JSX来建立; 2. 第二种是基于Vue 的标记语言的parser 来建立
+..JXX
+1. 环境搭建 首先创建一个新的文件夹并且进入;然后进入npm 环境;然后安装webpack(两种方法: 可以通过npx 直接使用webpack 也可以全局安装webpack and webpack-cli并且使用)
+cd jsx
+npm init
+npm install -g webpack webpack-cli
+webpack --version
+安装webpack-dev-server 包可以让调试更舒服一点.npm install webpack-dev-server --save-dev
+然后 webpack-dev-server 命令可以直接启动起来;这个包依赖 webpack-cli      所以,npm install --save-dev webpack-cli
+
+jsx 是babel 的一个插件;所以babel 也需要安装babel; babel-loader; babel-plugin
+安装到本地目录
+npm install --save-dev webpack babel-loader
+此时 .jsx/package.json 出现babelloader 和webpack
+接下来创建webpage config
+
+webconfig 是一个node.js 的模块 用module.exports 来配置设置. 首先配置一个入口 main.js;
+然后执行webpack 命令,此时 出现一个jsx/dist 目录; 里面是打包好的 main.js
+
+接下来安装babel:npm install --save-dev @babel/core @babel/preset-env
+在webpack 中加入module 模块; 然后先webpack 打包,然后再查看 dist/main.js 发现已经用babel 打包好了.
+
+在webapckconfig 中新加一个mode 配置,为了开发方便. 开发之后要改成 production 发布模式;webpack 打包一下,发现dist/main.js  出现了很大变化
+然后代码被放到eval 里面 这样调试的时候就可以当作一个单独的文件来进行调试了
+
+此时还不支持 jsx 所以,要配置 jsx/package.json
+首先要安装这个包: npm install --save-dev @babel/plugin-transform-react-jsx
+然后要配置到webpack.config.js 中去;双引号表示对json 尊重
+main.js 中添加 let a = <dev/>   jsx 代码,可以被正确webpack(命令) 打包执行 
+它被 eval 翻译成React.createElement

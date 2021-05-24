@@ -1,0 +1,43 @@
+<html>  
+  <head>  
+    <title>js24.html</title>  
+      
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
+    <meta http-equiv="description" content="this is my page">  
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">  
+      
+ 
+      
+    <!-- 输入完毕之后光标自动移动到下一个框的方法 -->  
+      
+ 
+  </head>  
+    
+  <body onload = "document.forms[0].elements[0].focus();">  
+    <form>  
+		<input type = "text" size = 3 maxlength=1 id="field001">     
+		<input type = "text" size = 3 maxlength=1 id="field002">
+		<input type = "text" size = 3 maxlength=1 id="field003"> 
+		<input type = "text" size = 3 maxlength=1 id="field004">
+    </form>   
+  </body>  
+  
+<script type="text/javascript">  
+      
+    	
+	function moveNextId(){
+		if(event.key === "Enter"){
+		// debugger;
+			document.getElementById('field002').focus();
+		}
+	}
+	var input_001 = document.getElementById('field001');
+	alert(input_001);
+	
+	 input_001.addEventListener("keyup",moveNextId,false);
+ 
+ 
+    </script>  
+      
+  
+</html> 

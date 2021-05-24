@@ -1,0 +1,13 @@
+problems.js
+
+// let Problem_Attributes = {
+//     ques: [],
+//     ans:  [],
+// }
+
+// let ans_Attribures =  {
+//     ans: "XXXX",
+//     type:  ["underLine"],
+// }
+
+

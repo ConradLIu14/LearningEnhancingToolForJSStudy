@@ -1,0 +1,391 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!js algorithms and data structure!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+----------------------------------------------------------------------------- switch 要加break 以及 default
+Write a switch statement to set answer for the following conditions:
+a - apple
+b - bird
+c - cat
+default - stuff
+
+function switchOfStuff(val) {
+  var answer = "";
+  // Only change code below this line
+
+
+
+  // Only change code above this line
+  return answer;
+}
+
+switchOfStuff(1);
+
+----------------------------------------------------------------------------- 
+Multiple Identical Options in Switch Statements 
+If you have multiple inputs with the same output, you can represent them in a switch  omitted from a switch statement's case, 
+
+Write a switch statement to set answer for the following ranges:
+1-3 - Low
+4-6 - Mid
+7-9 - High
+
+function sequentialSizes(val) {
+  var answer = "";
+  // Only change code below this line
+
+
+
+  // Only change code above this line
+  return answer;
+}
+
+sequentialSizes(1);
+
+-------------------------------------------------------------------------------Delete Properties from a JavaScript Object
+Delete the tails property from myDog. You may use either dot or bracket notation.
+
+
+// Setup
+var myDog = {
+  "name": "Happy Coder",
+  "legs": 4,
+  "tails": 1,
+  "friends": ["freeCodeCamp Campers"],
+  "bark": "woof"
+};
+
+// Only change code below this line
+
+---------------------------------------------------Iterate with JavaScript Do...While Loops
+Change the while loop in the code to a do...while loop so the loop will push only the number 10 to myArray, and i will be equal to 11 when your code has finished running.
+
+// Setup
+var myArray = [];
+var i = 10;
+
+// Only change code below this line
+while (i < 5) {
+  myArray.push(i);
+  i++;
+}
+
+------------------------------------------------Generate Random Whole Numbers with JavaScript
+Use this technique to generate and return a random whole number between 0 and 9.
+
+function randomWholeNum() {
+
+  // Only change code below this line
+
+  return Math.random();
+}
+
+------------------------------------------------Generate Random Whole Numbers within a Range
+Create a function called randomRange that takes a range myMin and myMax and returns a random whole number that's greater than or equal to myMin,
+ and is less than or equal to myMax, inclusive.
+
+function randomRange(myMin, myMax) {
+  // Only change code below this line
+  return 0;
+  // Only change code above this line
+}
+
+------------------------------------------------Use the parseInt Function
+Use parseInt() in the convertToInteger function so it converts the input string str into an integer, and returns it.
+
+function convertToInteger(str) {
+return 
+}
+
+convertToInteger("56");
+
+------------------------------------------------Use the parseInt Function with a Radix
+Use parseInt() in the convertToInteger function so it converts a binary number to an integer and returns it.
+
+function convertToInteger(str) {
+  return 
+
+}
+
+convertToInteger("10011");
+
+----------------------------------------------------Use the Conditional (Ternary) Operator
+Use the conditional operator in the checkEqual function to check if two numbers are equal or not. 
+The function should return either the string Equal or the string Not Equal.
+
+function checkEqual(a, b) {
+
+}
+
+checkEqual(1, 2);
+
+--------------------------------------------------------Use Multiple Conditional (Ternary) Operators
+In the checkSign function, use multiple conditional operators - following the recommended format used in findGreaterOrEqual - to check if a number is positive, 
+negative or zero. The function should return positive, negative or zero.
+
+function checkSign(num) {
+
+}
+
+checkSign(10);
+
+--------------------------------------------------------------Use Recursion to Create a Countdown
+We have defined a function called countdown with one parameter (n). 
+The function should use recursion to return an array containing the integers n through 1 based on the n parameter. 
+If the function is called with a number less than 1, the function should return an empty array. 
+For example, calling this function with n = 5 should return the array [5, 4, 3, 2, 1]. 
+Your function must use recursion by calling itself and must not use loops of any kind.
+
+// Only change code below this line
+function countdown(n){
+  return;
+}
+// Only change code above this line
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ES6 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+------------------------------------------------------------ Explore Differences Between the var and let Keywords
+unlike var, when using let, a variable with the same name can only be declared once. Note the "use strict". 
+This enables Strict Mode, which catches common coding mistakes and "unsafe" actions. For instance:
+
+var catName;
+var quote;
+function catTalk() {
+  "use strict";
+
+  catName = "Oliver";
+  quote = catName + " says Meow!";
+
+}
+catTalk();
+
+---------------------------------------------------Prevent Object Mutation
+As seen in the previous challenge, const declaration alone doesn't really protect your data from mutation. 
+To ensure your data doesn't change, JavaScript provides a function Object.freeze to prevent data mutation.
+
+In this challenge you are going to use Object.freeze to prevent mathematical constants from changing. 
+You need to freeze the MATH_CONSTANTS object so that no one is able to alter the value of PI, add, or delete properties.
+
+function freezeObj() {
+  const MATH_CONSTANTS = {
+    PI: 3.14
+  };
+  // Only change code below this line
+
+
+  // Only change code above this line
+  try {
+    MATH_CONSTANTS.PI = 99;
+  } catch(ex) {
+    console.log(ex);
+  }
+  return MATH_CONSTANTS.PI;
+}
+const PI = freezeObj();
+
+----------------------------------------------------Use the Rest Parameter with Function Parameters
+Modify the function sum using the rest parameter in such a way that the function sum is able to take any number of arguments and return their sum.
+
+const sum = (x, y, z) => {
+  const args = [x, y, z];
+  return args.reduce((a, b) => a + b, 0);
+}
+
+-----------------------------------------------------Use the Spread Operator to Evaluate Arrays In-Place
+Copy all contents of arr1 into another array arr2 using the spread operator.
+
+const arr1 = ['JAN', 'FEB', 'MAR', 'APR', 'MAY'];
+let arr2;
+
+arr2 = [];  // Change this line
+
+console.log(arr2);
+
+------------------------------------------------------Use Destructuring Assignment to Extract Values from Objects
+Replace the two assignments with an equivalent destructuring assignment. 
+It should still assign the variables today and tomorrow the values of today and tomorrow from the HIGH_TEMPERATURES object.
+
+const HIGH_TEMPERATURES = {
+  yesterday: 75,
+  today: 77,
+  tomorrow: 80
+};
+
+// Only change code below this line
+
+const today = HIGH_TEMPERATURES.today;
+const tomorrow = HIGH_TEMPERATURES.tomorrow;
+
+// Only change code above this line
+
+---------------------------------------------------Use Destructuring Assignment to Assign Variables from Objects
+Replace the two assignments with an equivalent destructuring assignment. 
+It should still assign the variables highToday and highTomorrow the values of today and tomorrow from the HIGH_TEMPERATURES object.
+
+const HIGH_TEMPERATURES = {
+  yesterday: 75,
+  today: 77,
+  tomorrow: 80
+};
+
+// Only change code below this line
+  
+const highToday = HIGH_TEMPERATURES.today;
+const highTomorrow = HIGH_TEMPERATURES.tomorrow; 
+
+// Only change code above this line
+
+------------------------------------------------- Use Destructuring Assignment to Assign Variables from Nested Objects
+Replace the two assignments with an equivalent destructuring assignment. It should still assign the variables lowToday and highToday the values of today.
+low and today.high from the LOCAL_FORECAST object.
+
+const LOCAL_FORECAST = {
+  yesterday: { low: 61, high: 75 },
+  today: { low: 64, high: 77 },
+  tomorrow: { low: 68, high: 80 }
+};
+
+// Only change code below this line
+  
+// const lowToday = LOCAL_FORECAST.today.low;
+// const highToday = LOCAL_FORECAST.today.high;
+
+// Only change code above this line
+
+------------------------------------------------- Use Destructuring Assignment to Assign Variables from Arrays
+Use destructuring assignment to swap the values of a and b so that a receives the value stored in b, and b receives the value stored in a.
+
+let a = 8, b = 6;
+// Only change code below this line
+
+---------------------------------------------------Use Destructuring Assignment with the Rest Parameter to Reassign Array Elements
+Use destructuring assignment with the rest parameter to perform an effective Array.prototype.slice() 
+so that arr is a sub-array of the original array source with the first two elements omitted.
+
+const source = [1,2,3,4,5,6,7,8,9,10];
+function removeFirstTwo(list) {
+  // Only change code below this line
+  const arr = list; // Change this line
+  // Only change code above this line
+  return arr;
+}
+const arr = removeFirstTwo(source);
+
+-------------------------------------------------Use Destructuring Assignment to Pass an Object as a Function's Parameters
+Use destructuring assignment within the argument to the function half to send only max and min inside the function.
+
+const stats = {
+  max: 56.78,
+  standard_deviation: 4.34,
+  median: 34.54,
+  mode: 23.87,
+  min: -0.75,
+  average: 35.85
+};
+
+// Only change code below this line
+const half = (stats) => (stats.max + stats.min) / 2.0; 
+// Only change code above this line
+
+----------------------------------------------------- Use getters and setters to Control Access to an Object
+Use the class keyword to create a Thermostat class. The constructor accepts a Fahrenheit temperature.
+In the class, create a getter to obtain the temperature in Celsius and a setter to set the temperature in Celsius.
+Remember that C = 5/9 * (F - 32) and F = C * 9.0 / 5 + 32, where F is the value of temperature in Fahrenheit, 
+and C is the value of the same temperature in Celsius.
+
+// Only change code below this line
+
+
+// Only change code above this line
+
+const thermos = new Thermostat(76); // Setting in Fahrenheit scale
+let temp = thermos.temperature; // 24.44 in Celsius
+thermos.temperature = 26;
+temp = thermos.temperature; // 26 in Celsius
+
+-------------------------------------------------Use * to Import Everything from a File
+The code in this file requires the contents of the file: string_functions.js, that is in the same directory as the current file.
+ Use the import * as syntax to import everything from the file into an object called stringFunctions.
+
+ // Only change code above this line
+
+stringFunctions.uppercaseString("hello");
+stringFunctions.lowercaseString("WORLD!");
+
+----------------------------------------------------Create an Export Fallback with export default
+The following function should be the fallback value for the module. Please add the necessary code to do so.
+
+function subtract(x, y) {
+  return x - y;
+}
+
+------------------------------------------------------Import a Default Export
+In the following code, import the default export from the math_functions.js file, found in the same directory as this file.
+ Give the import the name subtract.
+
+   
+// Only change code above this line
+
+subtract(7,4);
+
+------------------------------------------------------Create a JavaScript Promise
+Create a new promise called makeServerRequest. Pass in a function with resolve and reject parameters to the constructor.
+
+
+
+-------------------------------------------------------Complete a Promise with resolve and reject
+A promise has three states: pending, fulfilled, and rejected. The promise you created in the last challenge is forever stuck in the pending state 
+because you did not add a way to complete the promise. The resolve and reject parameters given to the promise argument are used to do this. 
+resolve is used when you want your promise to succeed, and reject is used when you want it to fail. 
+
+Make the promise handle success and failure. If responseFromServer is true, call the resolve method to successfully complete the promise. 
+Pass resolve a string with the value We got the data. If responseFromServer is false, use the reject method instead and pass it the string: Data not received.
+
+const makeServerRequest = new Promise((resolve, reject) => {
+  // responseFromServer represents a response from a server
+  let responseFromServer;
+    
+  if(responseFromServer) {
+    // Change this line
+  } else {  
+    // Change this line
+  }
+});
+
+---------------------------------------------Handle a Fulfilled Promise with then
+Add the then method to your promise. Use result as the parameter of its callback function and log result to the console.
+
+const makeServerRequest = new Promise((resolve, reject) => {
+  // responseFromServer is set to true to represent a successful response from a server
+  let responseFromServer = true;
+    
+  if(responseFromServer) {
+    resolve("We got the data");
+  } else {  
+    reject("Data not received");
+  }
+});
+
+------------------------------------------Handle a Rejected Promise with catch
+Add the catch method to your promise. Use error as the parameter of its callback function and log error to the console.
+
+const makeServerRequest = new Promise((resolve, reject) => {
+  // responseFromServer is set to false to represent an unsuccessful response from a server
+  let responseFromServer = false;
+    
+  if(responseFromServer) {
+    resolve("We got the data");
+  } else {  
+    reject("Data not received");
+  }
+});
+
+makeServerRequest.then(result => {
+  console.log(result);
+});
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!data structure
+
+
+
+
+
+
+
