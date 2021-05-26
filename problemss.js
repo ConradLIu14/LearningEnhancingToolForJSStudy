@@ -77,6 +77,7 @@ export class Problem extends Component {// ques={question_array} ans={answer_arr
         return this.root
     }
     showall() {
+        
 
 
     }

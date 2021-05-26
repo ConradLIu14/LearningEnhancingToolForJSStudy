@@ -1,5 +1,5 @@
-// import { Problem } from "./problems.js"
-import { Problem } from "./problemss.js"
+import { Problem } from "./problems.js"
+// import { Problem } from "./problemss.js"
 import { Component, createElement } from "./framework.js"
 import {Paper} from "./paper.js"
 

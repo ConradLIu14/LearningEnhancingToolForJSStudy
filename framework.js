@@ -133,65 +133,52 @@ export class Answer extends Component {
     }
 }
 
-export class Display_button extends Component {// parent and class
-    constructor() {
-        super()
-        this.attributes = new Object(null)
-        this.root = document.createElement("button")
-    }
+// export class Display_button extends Component {// parent and class
+//     constructor() {
+//         super()
+//         this.attributes = new Object(null)
+//         this.root = document.createElement("button")
+//     }
 
-    render() {
-        this.root.appendChild(document.createTextNode("Answer"))// parent and class
-        if (this.attributes.class) this.root.className = this.attributes.class
-        if (this.attributes.id) this.root.id = this.attributes.id
-        // this.root.onclick = function () {
-        //     // console.log(this.attributes)// 在 onclick 里面，找不到this 了
+//     render() {
+//         this.root.appendChild(document.createTextNode("Answer"))// parent and class
+//         if (this.attributes.class) this.root.className = this.attributes.class
+//         if (this.attributes.id) this.root.id = this.attributes.id
+//         // this.root.onclick = function () {
+//         //     // console.log(this.attributes)// 在 onclick 里面，找不到this 了
 
-        //     let parent = this.parentNode
-        //     let spans = parent.getElementsByTagName("span")
-        //     for (let s of spans) {
-        //         if (s.className === this.className) {
-        //             if (s.style.backgroundColor === "pink") s.style.backgroundColor = "black"
-        //             else if (s.style.backgroundColor === "black") s.style.backgroundColor = "pink"
-        //         }
-        //     }
-        // }
+//         //     let parent = this.parentNode
+//         //     let spans = parent.getElementsByTagName("span")
+//         //     for (let s of spans) {
+//         //         if (s.className === this.className) {
+//         //             if (s.style.backgroundColor === "pink") s.style.backgroundColor = "black"
+//         //             else if (s.style.backgroundColor === "black") s.style.backgroundColor = "pink"
+//         //         }
+//         //     }
+//         // }
 
-        this.root.onclick = new onclikcs().display_ans
-        return this.root
-    }
-}
-// ...................................... button and onclick .....................................................................
+//         this.root.onclick = new onclikcs().display_ans
+//         return this.root
+//     }
+// }
 export class Button extends Component{
     constructor(){
         super();
         this.attributes = new Object(null)
         this.root = document.createElement("button")
+        this.onclick = null
+        this.text = "button"
     }
 
-    render(onclick) {
-        this.root.appendChild(document.createTextNode("QucikCheck"))// parent and class
+    render(onclick = null, text = null) {
+        this.root.appendChild(document.createTextNode(this.text))// parent and class
         if (this.attributes.class) this.root.className = this.attributes.class
         if (this.attributes.id) this.root.id = this.attributes.id
-        this.root.onclick = onclick
+
+        if(onclick) this.root.onclick = onclick
+        else if(this.onclick) this.root.onclick = this.onclick
+
         return this.root
     }
 }
 
-export class onclikcs{
-    display_ans(){
-        let parent = this.parentNode
-        let spans = parent.getElementsByTagName("span")
-        for (let s of spans) {
-            if (s.className === this.className) {
-                if (s.style.backgroundColor === "pink") s.style.backgroundColor = "black"
-                else if (s.style.backgroundColor === "black") s.style.backgroundColor = "pink"
-            }
-        }
-
-    }
-
-}
-
-
-// ...................................... button and onclick .....................................................................
