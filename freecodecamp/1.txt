@@ -383,6 +383,65 @@ makeServerRequest.then(result => {
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!data structure
 
+------------------------------------------------------Add Items Using splice()
+https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/basic-data-structures/add-items-using-splice
+
+-----------------------------------------------------Copy an Array with the Spread Operator
+https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/basic-data-structures/copy-an-array-with-the-spread-operator
+
+-----------------------------------------------------Check if an Object has a Property
+https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/basic-data-structures/check-if-an-object-has-a-property
+
+--------------------------------------------------Generate an Array of All Object Keys with 
+https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/basic-data-structures/generate-an-array-of-all-object-keys-with-object-keys
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Object Oriented Programming
+----------------------------------------------------------Verify an Object's Constructor with instanceof
+https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/object-oriented-programming/verify-an-objects-constructor-with-instanceof
+
+--------------------------------------------------------------Understand Own Properties
+https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/object-oriented-programming/understand-own-properties
+
+---------------------------------------------------------------Use Prototype Properties to Reduce Duplicate Code
+https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/object-oriented-programming/use-prototype-properties-to-reduce-duplicate-code
+
+---------------------------------------------------------------Iterate Over All Properties
+https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/object-oriented-programming/iterate-over-all-properties
+
+-------------------------------------------------------------Understand the Constructor Property
+https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/object-oriented-programming/understand-the-constructor-property
+
+-------------------------------------------------------------Change the Prototype to a New Object
+https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/object-oriented-programming/change-the-prototype-to-a-new-object
+
+-------------------------------------------------------------Remember to Set the Constructor Property when Changing the Prototype
+https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/object-oriented-programming/remember-to-set-the-constructor-property-when-changing-the-prototype
+
+---------------------------------------------------------------Understand Where an Object’s Prototype Comes From
+https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/object-oriented-programming/understand-where-an-objects-prototype-comes-from
+
+---------------------------------------------------------------Understand the Prototype Chain
+https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/object-oriented-programming/understand-the-prototype-chain
+
+-----------------------------------------------------------------Use Inheritance So You Don't Repeat Yourself
+https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/object-oriented-programming/use-inheritance-so-you-dont-repeat-yourself
+
+------------------------------------------------------------Inherit Behaviors from a Supertype
+https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/object-oriented-programming/inherit-behaviors-from-a-supertype
+
+-------------------------------------------------------------Set the Child's Prototype to an Instance of the Parent
+https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/object-oriented-programming/set-the-childs-prototype-to-an-instance-of-the-parent
+
+-------------------------------------------------------------Reset an Inherited Constructor Property
+https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/object-oriented-programming/reset-an-inherited-constructor-property
+
+-------------------------------------------------------------Add Methods After Inheritance
+https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/object-oriented-programming/add-methods-after-inheritance
+
+.................................剩下的都需要再复习一遍的吧。
+
+
 
 
 

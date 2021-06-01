@@ -97,3 +97,82 @@
   a = a[1,a.length-1]
   console.log(a)
 }
+{
+  let obj = {
+    a: "a",
+    a:"b",
+  }
+  console.log(obj,obj.a)
+}
+
+{
+  console.log("dog ..........................")
+  function Dog() {
+    this.name = "Rupert";
+    this.color = "brown";
+    this.numLegs = 4;
+  }
+  // Only change code below this line
+  let d = new Dog()
+  console.log(d)
+  function dog() {
+    this.name = "Rupert";
+    this.color = "brown";
+    this.numLegs = 4;
+  }
+  // Only change code below this line
+  let dd = new dog()
+  console.log(dd)
+}
+
+{
+  function Cat(name) {
+    this.name = name;
+  }
+  
+  Cat.prototype = {
+    constructor: Cat,
+  };
+  
+  function Bear(name) {
+    this.name = name;
+  }
+  
+  Bear.prototype = {
+    constructor: Bear,
+  
+  };
+  
+  function Animal() { }
+  
+  Animal.prototype = {
+    constructor: Animal,
+    eat: function() {
+      console.log("nom nom nom");
+    }
+  };
+
+  let c1 = new Cat()
+  console.log(c1.constructor, c1.prototype, Cat.prototype)
+}
+
+{
+  function Animal(name) { 
+    this.name = name
+   }
+
+let A = new Animal("dog")
+let B = new Animal("cat")
+console.log(A,A.constructor, A.constructor === B.constructor, A.prototype)
+
+}
+
+
+
+{
+  let classes = "aa b c d"
+  let regExp = /[\S]+/g
+  // let regExp = /\S+/g
+
+  console.log(classes.match(regExp))
+}

@@ -17,6 +17,7 @@ export function createElement(type,attributes,...children){
 export class Component{
     constructor(type){
         // this.root = this.render();
+        
     }
 
 
@@ -31,6 +32,21 @@ export class Component{
 
     mountTo(parent){
         parent.appendChild(this.render())
+    }
+
+    add_id(){
+        if (this.attributes.id && this.root) this.root.id = thsi.attributes.id
+    }
+
+    add_classes(){
+        if(this.attributes.class){
+            let regExp = /\S+/g
+            let classes = this.attributes.class.match(regExp)
+            for(let c of classes){
+                this.root.classList.add(c)
+            }
+        }
+
     }
 
     // addListener(problemClass, question_class){

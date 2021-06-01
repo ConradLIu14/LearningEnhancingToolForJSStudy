@@ -16,8 +16,15 @@ export class Problem extends Component {// ques={question_array} ans={answer_arr
 
     render() {
         this.root = document.createElement("div")
-        if (this.attributes.id) this.root.id = this.attributes.id
-        if (this.attributes.class) this.root.className = this.attributes.class
+
+        // if (this.attributes.id) this.root.id = this.attributes.id
+        // if (this.attributes.class) this.root.className = this.attributes.class
+        if (this.attributes.id) {
+            this.add_id()}
+        if (this.attributes.class) {
+            this.root.className = this.attributes.class
+            this.add_classes()}
+
         else this.root.className = "paper"
         this.root.style.fontSize = "x-large"
         this.root.style.border = "1px solid blue" // 边框颜色

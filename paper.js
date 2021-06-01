@@ -21,9 +21,12 @@ export class Paper extends Component {// 开头必须大写
         this.root.style.margin = "0 auto" // 居中
         this.root.tabIndex = "-1"
 
+        let problem_index = 0; let question_index = 0; let problems = this.problems
+
         let dispaly_all = document.createElement("button")
         dispaly_all.appendChild(document.createTextNode("display all"))
         dispaly_all.onclick = (e) => {
+            problem_index = 0; question_index = 0
             this.show_all_answers()
         }
         this.root.appendChild(dispaly_all)
@@ -31,6 +34,7 @@ export class Paper extends Component {// 开头必须大写
         let Hide_all = document.createElement("button")
         Hide_all.appendChild(document.createTextNode("hide all"))
         Hide_all.onclick = (e) => {
+            problem_index = 0; question_index = 0
             this.hide_all_answers()
         }
         this.root.appendChild(Hide_all)
@@ -66,7 +70,7 @@ export class Paper extends Component {// 开头必须大写
             }
         }
         // ----------------------------------- 这里应该变成一个类似 animation 之类可开关的动作, 可以通过一个按钮或者什么东西开启或者停止这个监听----------------------------------------------------
-        let problem_index = 0; let question_index = 0; let problems = this.problems
+        // let problem_index = 0; let question_index = 0; let problems = this.problems
         this.root.addEventListener("keyup", event => {
             //--------------------------------------------------------------------------------------------------
             if (event.key === "Enter" && event.altKey) show_next_answer(event)
@@ -91,9 +95,6 @@ export class Paper extends Component {// 开头必须大写
                 q.root.focus();
             }
         }
-
-
-
 
 
         // -----------------------------------------------------------------------------------------------------------------------------------------
