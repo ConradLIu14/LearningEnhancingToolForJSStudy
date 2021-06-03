@@ -22,7 +22,7 @@ export class Problem extends Component {// ques={question_array} ans={answer_arr
         if (this.attributes.id) {
             this.add_id()}
         if (this.attributes.class) {
-            this.root.className = this.attributes.class
+            // this.root.className = this.attributes.class
             this.add_classes()}
 
         else this.root.className = "paper"

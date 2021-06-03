@@ -40,6 +40,7 @@ export class Component{
 
     add_classes(){
         if(this.attributes.class){
+            this.root.className = this.attributes.class
             let regExp = /\S+/g
             let classes = this.attributes.class.match(regExp)
             for(let c of classes){

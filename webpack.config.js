@@ -1,5 +1,6 @@
 module.exports = {
-    entry: './main.js',
+    // entry: './main.js',
+    entry: './codeEditor.js',
     module: {
         rules: [
             {

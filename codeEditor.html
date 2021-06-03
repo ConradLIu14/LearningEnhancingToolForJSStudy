@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title>Code Editor</title>
+    <style>
+        .codeEditArea {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            font-family: Consolas, "Courier New", monospace;
+            font-weight: normal;
+            font-size: 18px;
+            font-feature-settings: "liga"0, "calt"0;
+            line-height: 24px;
+            letter-spacing: 0px;
+            /* top:0; */
+            left: 83px;
+            width: 405px;
+            height: 662px;
+            border: 1px solid blue;
+        }
+
+        .codeEditor {
+            width: 480px;
+            height: 662px;
+            border: 1px solid red;
+            /* overflow: hidden; */
+        }
+
+        .codeEditMargin {
+            position: absolute;
+            transform: translate3d(0px, 0px, 0px);
+            contain: strict;
+            /* top: 0px; */
+            height: 662px;
+            width: 75px;
+            border: 1px solid green;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="./dist/main.js"></script>
+</body>
+
+</html>
