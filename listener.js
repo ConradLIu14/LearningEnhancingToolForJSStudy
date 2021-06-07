@@ -1,15 +1,5 @@
-// export class Dispatcher {
-//     constructor(element) {
-//       this.element = element;
-//     }
-// dispatch(type, properties) {
-//     let event = new Event(type);
-//     for (let name in properties) {
-//       event[name] = properties[name];
-//     }
-//     this.element.dispatchEvent(event);
-//   }
-// }
+import {CodeLineInput, CodeEditorAreaLine} from "./codeEditor.js"
+import { Component, createElement } from "./framework.js"
 
 function dispatch(element, type, properties){
     let event = new Event(type);
@@ -56,6 +46,55 @@ export class MousePosititonListener {
         dispatch(this.element, this.type, context)
     }
 }
+
+export class MouseLeftOnclick{
+
+    constructor(element, processor) {// codeLineListener
+
+        this.element = element
+        // this.count = count
+        this.type = "CodeLineOnclick" + this.count
+        this.processor = processor
+        this.res = null
+
+        element.addEventListener("mouseup", event => {
+            if(event.button === 0){
+                console.log("left")
+                if(this.processor)this.processor(this.element, event)
+            }
+            
+        })
+    }
+
+}
+
+
+export class KeyPressListener{
+
+    constructor(element,keyCode, processor, disaptch_args) {// codeLineListener
+        this.element = element
+        this.type = "CodeLineSpace" + this.count
+        this.processor = processor
+        element.addEventListener("keyup", event => {
+            
+            if(event.keyCode === keyCode){// enter: 13; space: 32
+                console.log("keyCode", keyCode)
+                event.preventDefault();
+                event.stopPropagation();
+
+                let props;
+                if(this.processor)  props = processor(this.element)
+                if(disaptch_args) dispatch(disaptch_args.element, disaptch_args.type, [])
+            }
+            
+            
+
+        })
+    }
+
+}
+
+
 
 // export class MousePositionRecognizer{
 //     constructor(dispatcher) {

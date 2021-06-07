@@ -9,7 +9,6 @@ export function createElement(type,attributes,...children){
     for (let child of children){
         if (typeof child === "string") 
            child = new TextWrapper(child);   
-           
         element.appendChild(child);
     }
     return element;
@@ -47,8 +46,20 @@ export class Component{
                 this.root.classList.add(c)
             }
         }
-
     }
+
+    render(){
+        return this.root
+    }
+
+    addEventListener(type, event){
+        this.root.addEventListener(type, event)
+    }
+
+    // mountTo(parent){
+    //     parent.appendChild(this.root)
+    // }
+
 
     // addListener(problemClass, question_class){
     //     this.root.addEventListener('keyup', function(event){
@@ -67,6 +78,14 @@ class TextWrapper extends Component{
         this.root = document.createTextNode(content);
     }
 
+    
+    // redner(){
+    //     return this.root
+    // }
+
+    // mountTo(parent){
+    //     parent.appendChild(this.root)
+    // }
 
 
 }
@@ -75,6 +94,17 @@ class ElementWrapper extends Component{
         super();
         this.root = document.createElement(type);
     }
+
+    
+    // redner(){
+    //     return this.root
+    // }
+
+    // mountTo(parent){
+    //     parent.appendChild(this.root)
+    // }
+
+
 }
 
 
