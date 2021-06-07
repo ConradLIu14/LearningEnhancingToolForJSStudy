@@ -71,16 +71,15 @@ class CodeEditMargin extends Component {
 
     add_line(count) {
         let new_margin
-        if (count) {
+        if (count > 0) {
             new_margin = <CodeEditMarginUnit class="codeEditMarginUnit">{String(count)}</CodeEditMarginUnit>
             // let firstMargin = <CodeEditMarginUnit class = "codeEditMarginUnit">1</CodeEditMarginUnit>
             // console.log(new_margin, new_margin.mountTo)
-            new_margin.mountTo(this.root)
         }
-        else {
-            new_margin = <CodeEditMarginUnit class="codeEditMarginUnit"></CodeEditMarginUnit>
-            new_margin.mountTo(this.root)
+        else if(count === -1) {
+            new_margin = <CodeEditMarginUnit class="codeEditMarginUnit">{String(this.marginsSet.length+1)}</CodeEditMarginUnit>
         }
+        new_margin.mountTo(this.root)
         this.marginsSet.push(new_margin)
     }
 
@@ -265,7 +264,7 @@ class CodeEditor extends Component {
         this.count += 1
         let line = <CodeEditorAreaLine class='codeEditLine' codeEditor={this} lineCount={curr_count + 1}></CodeEditorAreaLine>
         // this.lines.push(line)
-        this.margin.add_line(curr_count + 1)
+        this.margin.add_line(-1)
         this.textArea.add_line(line, curr_count + 1)
     }
 }
