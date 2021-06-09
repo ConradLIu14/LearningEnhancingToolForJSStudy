@@ -1,15 +1,11 @@
 <html>  
   <head>  
-    <title>js24.html</title>  
+    <title>js24 try.html</title>  
       
     <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
     <meta http-equiv="description" content="this is my page">  
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">  
-      
- 
-      
-    <!-- 输入完毕之后光标自动移动到下一个框的方法 -->  
-	<style>
+      	<style>
 		.codeEditLine {
             /* 禁止换行下下下下下下下下下下 */
             /* display:inline; */
@@ -23,7 +19,8 @@
 
 		.a {
             /* 禁止换行下下下下下下下下下下 */
-            /* display:inline; */
+            display:inline;
+            float:left;
             /* white-space: normal;
             text-overflow: ellipsis; */
             /* 禁止换行上上上上上上上 */
@@ -34,7 +31,8 @@
 
 		.b {
             /* 禁止换行下下下下下下下下下下 */
-            /* display:inline; */
+            display:inline;
+            float:left;
             /* white-space: normal;
             text-overflow: ellipsis; */
             /* 禁止换行上上上上上上上 */
@@ -45,7 +43,8 @@
 		
 		.c {
             /* 禁止换行下下下下下下下下下下 */
-            /* display:inline; */
+            display:inline;
+            float:left;
             /* white-space: normal;
             text-overflow: ellipsis; */
             /* 禁止换行上上上上上上上 */
@@ -61,32 +60,10 @@
   </head>  
     
   <body>  
-	  <div class="codeEditLine" tabindex="-1" contenteditable="true"></div>
-	  <script>
-		  let d = document.getElementsByClassName("codeEditLine")[0]
-			d.addEventListener("keydown", event =>{
-				if(event.keyCode === 13){
-					event.preventDefault();
-				// event.stopPropagation();
-				// return false
-				}
-			})
-		  d.addEventListener("keyup", function(event) {
-            
-            // event.stopPropagation();
-            if(event.keyCode === 13){// enter: 13; space: 32
-                console.log("keyCode", 13)
-                event.preventDefault();
-				event.stopPropagation();
-				return false
-                // if(this.processor) processor(this.element)
-            } 
-        })
-	  </script>
-
-	  <script>
+	  <script type="text/javascript">
 		  let a = document.createElement("div")
-		  a.id = "a"
+		  a.setAttribute("class", "a")
+        //   a.classList.add("a")
 		  let b = document.createElement("div")
 		  b.setAttribute("class", "b")
 		  let c = document.createElement("div")
@@ -94,9 +71,14 @@
 
 		  document.body.appendChild(a)
 		  a.appendChild(b)
-		  a.removeAttribute(a.lastChild)
+          b.addEventListener("mouseup", event=>{
+              console.log("b mouseup")
+          })
+		  a.removeChild(a.lastChild)
 		  a.appendChild(c)
 		  a.appendChild(b)
+          a.appendChild(c)
+        // b.appendChild(a)
 	  </script>
   </body>  
 </html> 

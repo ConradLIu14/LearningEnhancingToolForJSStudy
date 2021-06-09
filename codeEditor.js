@@ -16,16 +16,10 @@ class CodeEditarea extends Component {
     render() {
         for (let key in this.attributes) this.root.setAttribute(key, this.attributes[key])
         this.count = 1
-        // let fristLine = <CodeEditorAreaLine class = "codeEditLine 1"></CodeEditorAreaLine>
-
-        // fristLine.mountTo(this.root)
-        // this.add_line()
         return this.root
     }
 
     add_line(line, count) {
-        // let fristLine = <CodeEditorAreaLine class = "codeEditLine 1"></CodeEditorAreaLine>
-        // this.linesSet.push(line)
         this.linesSet.splice(count - 1, 0, line)
 
         for (let i = count; i < this.linesSet.length; i++) {
@@ -33,47 +27,30 @@ class CodeEditarea extends Component {
             this.linesSet[i].refresh_count()
         }
 
-        // let counts = []
-        // for(let l of this.linesSet){
-        //     counts.push(l.attributes.lineCount)
+        console.log("children", this.root.children)
+
+        // for (let l of this.linesSet) {
+        //     l.mountTo(this.root)
         // }
-        // console.log("counts", counts)
-
-        // while (this.root.hasChildNodes()) {
-
-        //     this.root.removeChild(this.root.lastChild);
-        // }
-
-
-        // line.mountTo(this.root)
-
-
-        for (let l of this.linesSet) {
-            l.mountTo(this.root)
-            // this.root.appendChild(l.render())
-            // this.root.appendChild(l.root)
-            // console.log("...", l, this.linesSet.length)
-        }
+        line.mountTo(this.root)// 底层设计缺陷，必须先render；所以 先moutto render 一下。 可以写一个inserbefore 的方法 中调用render 可以解决
+        if(this.linesSet.length > 1 && count < this.linesSet.length) this.root.insertBefore(line.root, this.linesSet[count].root)
 
         line.focus()
     }
 
     remove_line(count) {
         if (this.linesSet.length > 1) {
-            // console.log("count", count, this.linesSet.length)
             this.root.removeChild(this.linesSet[count - 1].root)
             this.linesSet.splice(count - 1, 1)
-            // console.log("length", this.linesSet.length)
             for (let i = count - 1; i < this.linesSet.length; i++) {
                 this.linesSet[i].attributes.lineCount -= 1
-                this.linesSet[i].refresh_count()
+                this.linesSet[i].refresh_count()// 需要更新 dispatch
             }
 
             let counts = []
             for (let l of this.linesSet) {
                 counts.push(l.attributes.lineCount)
             }
-            // console.log("counts", counts)
         }
     }
 }
@@ -142,14 +119,11 @@ export class CodeEditorAreaLine extends Component {
         this.root.tabIndex = -1
         new MouseLeftOnclick(this.root, this.onclick)
 
-        // let count = this.attributes.lineCount
-        // let codeEditor = this.attributes.codeEditor
-
         this.disaptch = function (count, codeEditor) {
             return function (e) {
-                console.log("this", this, count, this.lastChild)
-                if (e.keyCode === 13) {
-                    // console.log("disaptch", this)
+                console.log("keycode", e.keyCode, e.key)
+                if (e.keyCode === 13) {// enter
+                    console.log("disaptch", this)
                     let event = new Event("lineEnter")
                     event["count"] = count
                     codeEditor.root.dispatchEvent(event)
@@ -159,6 +133,20 @@ export class CodeEditorAreaLine extends Component {
                     event["count"] = count
                     if (this.lastChild === null) { 
                         codeEditor.root.dispatchEvent(event) 
+                    }
+                }
+                else if(e.keyCode === 38 ){
+                    if(count === 1) return 
+                    else{
+                        console.log(this.parentNode.children[count - 2])
+                        this.parentNode.children[count - 2].focus()
+                    }
+                }
+                else if(e.keyCode === 40 ){
+                    if(count === this.parentNode.children.length) return 
+                    else{
+                        console.log(this.parentNode.children[count ])
+                        this.parentNode.children[count].focus()
                     }
                 }
             }
@@ -191,8 +179,6 @@ export class CodeEditorAreaLine extends Component {
             this.root.addEventListener("mouseup", func)
             this.func = func
         }
-
-
         return this.root
     }
 
