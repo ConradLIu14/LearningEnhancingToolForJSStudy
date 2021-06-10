@@ -29,9 +29,6 @@ class CodeEditarea extends Component {
 
         console.log("children", this.root.children)
 
-        // for (let l of this.linesSet) {
-        //     l.mountTo(this.root)
-        // }
         line.mountTo(this.root)// 底层设计缺陷，必须先render；所以 先moutto render 一下。 可以写一个inserbefore 的方法 中调用render 可以解决
         if(this.linesSet.length > 1 && count < this.linesSet.length) this.root.insertBefore(line.root, this.linesSet[count].root)
 
@@ -42,6 +39,7 @@ class CodeEditarea extends Component {
         if (this.linesSet.length > 1) {
             this.root.removeChild(this.linesSet[count - 1].root)
             this.linesSet.splice(count - 1, 1)
+            this.linesSet[count - 2].focus()
             for (let i = count - 1; i < this.linesSet.length; i++) {
                 this.linesSet[i].attributes.lineCount -= 1
                 this.linesSet[i].refresh_count()// 需要更新 dispatch
@@ -65,9 +63,6 @@ class CodeEditMargin extends Component {
 
     render() {
         for (let key in this.attributes) this.root.setAttribute(key, this.attributes[key])
-        // this.add_line(1)
-        // let firstMargin = <CodeEditMarginUnit class = "codeEditMarginUnit">1</CodeEditMarginUnit> // !!!!
-        // firstMargin.mountTo(this.root)
         return this.root
     }
 
@@ -75,8 +70,6 @@ class CodeEditMargin extends Component {
         let new_margin
         if (count > 0) {
             new_margin = <CodeEditMarginUnit class="codeEditMarginUnit">{String(count)}</CodeEditMarginUnit>
-            // let firstMargin = <CodeEditMarginUnit class = "codeEditMarginUnit">1</CodeEditMarginUnit>
-            // console.log(new_margin, new_margin.mountTo)
         }
         else if (count === -1) {
             new_margin = <CodeEditMarginUnit class="codeEditMarginUnit">{String(this.marginsSet.length + 1)}</CodeEditMarginUnit>
@@ -149,18 +142,12 @@ export class CodeEditorAreaLine extends Component {
                         this.parentNode.children[count].focus()
                     }
                 }
+                
             }
 
         }
-
-        // this.back
-
         this.func = null
         this.backspace_event = null
-        // let disaptch_args = Object.create(null)
-        // disaptch_args.type = "Enter"
-        // disaptch_args.element = this.root.parentNode
-        // new KeyPressListener(this.root, 13, null, disaptch_args)
     }
 
     render() {
@@ -177,6 +164,7 @@ export class CodeEditorAreaLine extends Component {
         if (this.func === null) {
             this.root.addEventListener("keyup", func)
             this.root.addEventListener("mouseup", func)
+            this.root.addEventListener("mouseup", this.mouseup)
             this.func = func
         }
         return this.root
@@ -188,8 +176,14 @@ export class CodeEditorAreaLine extends Component {
 
     onclick(element, event) {
         console.log(element, event.offsetX, event.offsetY)
-        // inputLine.mountTo(element)
+    }
 
+    mouseup(event){
+        // console.log(event.button)
+        if(event.button === 0){
+            console.log("left")
+
+        }
     }
 
     refresh_count() {
@@ -229,8 +223,6 @@ export class CodeLineInput extends Component {
         this.state = "start"
         this.content = ''
         this.root = document.createElement('div')
-
-
     }
 
     render() {
@@ -248,8 +240,22 @@ export class CodeLineInput extends Component {
         this.root.tabIndex = "-1"
         return this.root
     }
+}
 
+class codeLineInput extends Component{
+    constructor(){
+        this.attributes = Object.create(null)
+        // this.root = document.createElement('div')
+        this.root = render()
+    }
 
+    render(){
+        this.root = document.createElement("div")
+        this.root.contentEditable = true
+        this.root.setAttribute("class", "codeLineInput")
+
+        return this.root
+    }
 }
 
 class CodeEditor extends Component {
@@ -264,56 +270,44 @@ class CodeEditor extends Component {
 
         this.input = <CodeLineInput class="codeLineInput"></CodeLineInput>
         this.root = document.createElement('div')
-
-        // this.processor = new CodeEditoerProcessor()
-
+        // this.input = <codeLineInput></codeLineInput>
     }
 
     render() {
 
         for (let key in this.attributes) this.root.setAttribute(key, this.attributes[key])
         let margin = <CodeEditMargin class="codeEditMargin" line_height="24"></CodeEditMargin>// 应该把class 定义到constructor中去。
-        let textArea = <CodeEditarea class="codeEditArea" line_height="24"></CodeEditarea>
+        let textArea = <CodeEditarea class="codeEditArea" line_height="24" line_input = {this.input}></CodeEditarea>
         this.margin = margin
         this.textArea = textArea
         margin.mountTo(this.root)
         textArea.mountTo(this.root)
         textArea.parent = this
-        // margin.add_line(1)
-        // margin.add_line(2)
-        // let firstLine = <CodeEditorAreaLine class = "codeEditLine"></CodeEditorAreaLine>
+
         this.add_line(this.count)
         let element = this
         this.root.addEventListener('lineEnter', function (e) {
             element.add_line(e.count)
         })
         this.root.addEventListener("lineBackspace", function (e) {
-            // console.log("backspace dispatch", e.count)
-
             element.remove_line(e.count)
         })
-
-        // new MouseLeftOnclick(this.textArea.root, this.onclick)
-
-        // new KeyPressListener(this.textArea.root, 32)// Space
-        // new KeyPressListener(this, 13, this.processor.add_line)// Enter
         return this.root
     }
 
-    onclick(element, event) {
-        // console.log(element, event.offsetX, event.offsetY)
-    }
+    // lineOnclick(element, event) {
+    //     this.onclickFocus = element
+    //     this.input.mountTo(this.onclickFocus)
+    // }
 
     add_line(curr_count) {
         this.count += 1
         let line = <CodeEditorAreaLine class='codeEditLine' codeEditor={this} lineCount={curr_count + 1}></CodeEditorAreaLine>
-        // this.lines.push(line)
         this.margin.add_line(-1)
         this.textArea.add_line(line, curr_count + 1)
     }
 
     remove_line(count) {
-        // this.count -=1
         this.margin.remove_line(-1)
         this.textArea.remove_line(count)
     }

@@ -16,6 +16,8 @@ export function createElement(type,attributes,...children){
 export class Component{
     constructor(type){
         // this.root = this.render();
+        this.parentElement = null
+        this.parentNode = null
         
     }
 
@@ -31,6 +33,8 @@ export class Component{
 
     mountTo(parent){
         parent.appendChild(this.render())
+        this.parentElement = parent
+        this.parentNode = parent.root
     }
 
     add_id(){
@@ -89,7 +93,7 @@ class TextWrapper extends Component{
 
 
 }
-class ElementWrapper extends Component{
+export class ElementWrapper extends Component{
     constructor(type){
         super();
         this.root = document.createElement(type);
