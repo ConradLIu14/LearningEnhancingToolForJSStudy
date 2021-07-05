@@ -1,14 +1,6 @@
 import { jsadvanced } from "./jsadvanced.js"
 import { Component, createElement, Sign_workspace } from "../framework.js"
 import { Paper } from "../paper.js"
-// import { Chunk } from "webpack";
-
-// import {aaa} from "./nodeServer.js"
-// import {problems} from "../1js类型"
-
-
-// console.log(jsadvanced)
-// let a = jsadvanced[0]
 
 class Sign_advanced_workspace extends Component {
     constructor() {
@@ -26,16 +18,11 @@ class Sign_advanced_workspace extends Component {
         this.root.style.marginTop = "10px"
         let events = this.keydownEvents
         let mouseup = event => {
-            // console.log("mouseup1")
-
             if (event.button === 0 && window.getSelection().toString()) {
 
                 let pressUp = event => {
-                    // event.preventDefault()
                     if ((event.key === "(" || event.key === "（") && event.shiftKey) {
-                        // console.log("keypress2")
                         console.log("trigger")
-                        // event.preventDefault()
 
                         let selection = window.getSelection()
                         let string = selection.toString()
@@ -45,14 +32,10 @@ class Sign_advanced_workspace extends Component {
                         sp.appendChild((document.createTextNode(string)))
 
                         console.log(string)
-                        // selection.deleteFromDocument()
                         let range = selection.getRangeAt(0)
                         console.log("the ranges are ", range.toString(), range)
                         range.deleteContents()
                         range.insertNode(sp)
-                        // selection.setSelectionRange
-
-
 
                         this.root.removeEventListener("keydown", events.pop())
                         this.root.removeEventListener("keyup", events.pop())
@@ -67,34 +50,21 @@ class Sign_advanced_workspace extends Component {
                     if (event.key === "(" && event.shiftKey) {
                         event.preventDefault()
                     }
-
-
                 }
                 this.root.addEventListener("keyup", pressUp)
                 this.root.addEventListener("keydown", keyDown)
 
                 events.push(pressUp)
                 events.push(keyDown)
-
             }
-
-
         }
         this.root.addEventListener("mouseup", mouseup)
         this.root.addEventListener("mousedown", event => {
             if (events) {
                 this.root.removeEventListener("keyup", events.pop())
-                // this.root.removeEventListener("mouseup", mouseup)
                 window.getSelection().removeAllRanges()
             }
         })
-
-        // this.root.addEventListener("keydown", event =>{
-        //     // if(event.key === "(" && event.shiftKey) show_next_answer(event)
-        //     console.log(event.keyCode, event.key, event.shiftKey)
-
-        // })
-
         return this.root
     }
 }
@@ -183,28 +153,10 @@ console.log(jsadvanced)
 
 let curr_chapter = jsadvanced[0]
 
-// let sign_try = <Sign_advanced_workspace>{String(curr_chapter.content)}</Sign_advanced_workspace>
-// sign_try.mountTo(document.body)
-
-// let b = <Block obj = {curr_chapter} class = {"block"} id = {curr_chapter.title} ></Block>
-
-// b.mountTo(document.body)
-// for(let i of curr_chapter.content){
-//     // console.log(i)
-//     for(let ii of i){
-//         if(ii !== "/n"){
-//             let line = <Sign_advanced_workspace>{ii}</Sign_advanced_workspace>
-//             line.mountTo(b.root)
-//         }    
-//     }
-// }
-
 function generate_section(curr_section,canvase, section_count) {
-    if(!arguments[1]) canvase = document.body // ！！！！！！！！！！！！！！！！！默认值！！！！！！！！！！！！！！！！
+    if(!arguments[1]) canvase = document.body // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!默认值!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     if(!arguments[2]) section_count = [curr_section.count]
     let b = <Section_Block obj={curr_section} class={"block"} id={curr_section.title} count={section_count} ></Section_Block>
-    // canvase ? canvase : document.body
-    // section_count ? section_count : [curr_section.count]
     
     console.log(canvase, section_count)
     b.mountTo(canvase)
@@ -222,12 +174,11 @@ function generate_sections(sections,section_count) {
         generate_section(sections[i],undefined, section_count)
         section_count.pop()
     }
-    
 }
 
 function generate_chapter(curr, canvase) {
     let section_count = [curr.count]
-    if(!arguments[1]) canvase = document.body // ！！！！！！！！！！！！！！！！！默认值！！！！！！！！！！！！！！！！
+    if(!arguments[1]) canvase = document.body // !!!!!!!!!!!!!!!!!默认值!!!!!!!!!!!!!!!!!
     let section = [curr.count]
     let b = <Chapter_Block obj={curr} class={"block"} id={curr.title} count={section_count} ></Chapter_Block>
     b.mountTo(canvase)
@@ -242,8 +193,10 @@ function generate_chapter(curr, canvase) {
     let section_count = [curr.count]
 
 
-    let travse = function (curr_section,canvase, section_count) {
-        generate_section(curr_section,canvase, section_count)
+    let travse = function (curr_section, canvase, section_count) {
+        generate_section(curr_section, canvase, section_count)   
+
+        
     }
 }
 
