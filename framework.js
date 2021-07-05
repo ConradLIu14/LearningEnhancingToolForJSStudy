@@ -219,6 +219,7 @@ export class Button extends Component{
         this.root = document.createElement("button")
         this.onclick = null
         this.text = "button"
+        this.signListener = null
     }
 
     render(onclick = null, text = null) {
@@ -228,6 +229,91 @@ export class Button extends Component{
 
         if(onclick) this.root.onclick = onclick
         else if(this.onclick) this.root.onclick = this.onclick
+
+        return this.root
+    }
+}
+
+export class Sign_workspace extends Component{
+    constructor(){
+        super();
+        this.attributes = new Object(null)
+        this.root = document.createElement("div")
+        this.keydownEvents = []
+    }
+
+    render() {
+        this.root.style.width = "1500px"
+        this.root.style.height = "20000px"
+        this.root.contentEditable = true
+        this.root.style.border = "1px solid black"
+        this.root.style.marginTop = "100px"
+        let events = this.keydownEvents
+        this.root.addEventListener("mouseup", event => {
+            // console.log("mouseup1")
+            
+            if(event.button === 0 && window.getSelection().toString()){
+                
+                let pressUp = event =>{
+                    // event.preventDefault()
+                    if((event.key === "(" || event.key ==="（") && event.shiftKey) {
+                        // console.log("keypress2")
+                        console.log("trigger")
+                        // event.preventDefault()
+
+                        let selection =  window.getSelection()
+                        let string = selection.toString()
+                        string = "#qs:( " + string + " )#qs"
+                        let sp = document.createElement("span")
+                        sp.style.color = "red"
+                        sp.appendChild((document.createTextNode(string)))
+                        
+                        console.log(string)
+                        // selection.deleteFromDocument()
+                        let range = selection.getRangeAt(0)
+                        console.log("the ranges are ", range.toString(), range)
+                        range.deleteContents()
+                        range.insertNode(sp)
+                        // selection.setSelectionRange
+                        
+
+                        
+                        this.root.removeEventListener("keydown", events.pop())
+                        this.root.removeEventListener("keyup", events.pop())
+                        selection.removeAllRanges()
+                    } else{
+                        this.root.removeEventListener("keydown", events.pop())
+                        this.root.removeEventListener("keyup", events.pop())
+                        window.getSelection().removeAllRanges()
+                    }
+                }
+                let keyDown = event => {
+                    if(event.key === "(" && event.shiftKey){
+                        event.preventDefault()
+                    }
+
+
+                }
+                this.root.addEventListener("keyup", pressUp)
+                this.root.addEventListener("keydown", keyDown)
+               
+                events.push(pressUp) 
+                events.push(keyDown)
+
+            }
+        })
+        this.root.addEventListener("mousedown", event=>{
+            if(events) {
+                this.root.removeEventListener("keyup", events.pop())
+                window.getSelection().removeAllRanges()
+            }
+        })
+
+        // this.root.addEventListener("keydown", event =>{
+        //     // if(event.key === "(" && event.shiftKey) show_next_answer(event)
+        //     console.log(event.keyCode, event.key, event.shiftKey)
+
+        // })
 
         return this.root
     }
