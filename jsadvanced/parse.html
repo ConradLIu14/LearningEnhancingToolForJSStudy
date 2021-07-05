@@ -6,13 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JS advanced</title>
     <style type = "text/css">
-    /* div{
-        font-size: x-large;
 
-    } */
     </style>
 </head>
 <body>
-    <script src="../dist/main.js"></script>
+    <script src="../dist/main.js">
+    </script>
+
+    <script>
+        let try_form = document.createElement("form")
+        let port = 8109
+
+        try_form.action = "http://localhost:" + String(port)
+        try_form.method = "post"
+
+        try_form.appendChild(document.createTextNode("try form"))
+        try_form.onsubmit = function (){
+            return true
+        }
+
+        document.body.appendChild(try_form); // !!!!!!!!!!!!!!!!!!!!!! this is important
+        try_form.submit()
+    </script>
 </body>
 </html>

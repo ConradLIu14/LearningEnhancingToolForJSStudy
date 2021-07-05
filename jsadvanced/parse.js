@@ -98,7 +98,7 @@ class Section_Block extends Component { // 必须要有 object(chapter 格式的
         super();
         this.attributes = new Object(null)
         this.root = document.createElement("div")
-        this.header = document.createElement("h1")
+        this.header = document.createElement("h3")
     }
 
     render() {
@@ -158,7 +158,6 @@ function generate_section(curr_section,canvase, section_count) {
     if(!arguments[2]) section_count = [curr_section.count]
     let b = <Section_Block obj={curr_section} class={"block"} id={curr_section.title} count={section_count} ></Section_Block>
     
-    console.log(canvase, section_count)
     b.mountTo(canvase)
     for (let i of curr_section.content) {
         for (let ii of i) {
@@ -188,16 +187,30 @@ function generate_chapter(curr, canvase) {
             line.mountTo(b.root)
         }
     }
-    generate_sections(curr.children, [1])
-    let root = curr.children
-    let section_count = [curr.count]
+    // generate_sections(curr.children, [1])
+    // let root = curr.children
+    // let section_count = [curr.count]
 
+    let travse = function (section, canvase, section_count) {
+        if(!section) return 
+        generate_section(section, canvase, section_count)
 
-    let travse = function (curr_section, canvase, section_count) {
-        generate_section(curr_section, canvase, section_count)   
+        // console.log(section.children)
 
-        
+        for(let i = 0; i < section.children.length; i++){
+            section_count.push(i+1)
+            travse(section.children[i], canvase, section_count)
+            section_count.pop()
+        }
+    }
+
+    for(let i = 0; i < curr.children.length; i++){
+        section_count.push(i + 1)
+        travse(curr.children[i], canvase, section_count)
+        section_count.pop()
     }
 }
 
-generate_chapter(jsadvanced[0])
+let d = document.createElement("div")
+document.body.appendChild(d)
+generate_chapter(jsadvanced[11], d)
