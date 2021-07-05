@@ -21,8 +21,6 @@ export class Component{
         
     }
 
-
-
     setAttribute(name,value){
         this.attributes[name] = value;
     }
@@ -32,6 +30,7 @@ export class Component{
     }
 
     mountTo(parent){
+        
         parent.appendChild(this.render())
         this.parentElement = parent
         this.parentNode = parent.root
@@ -60,20 +59,6 @@ export class Component{
         this.root.addEventListener(type, event)
     }
 
-    // mountTo(parent){
-    //     parent.appendChild(this.root)
-    // }
-
-
-    // addListener(problemClass, question_class){
-    //     this.root.addEventListener('keyup', function(event){
-    //         if (event.keyCode === 18) {
-                
-
-    //         }
-
-    //     })
-    // }
 }
 
 class TextWrapper extends Component{
@@ -81,17 +66,6 @@ class TextWrapper extends Component{
         super();
         this.root = document.createTextNode(content);
     }
-
-    
-    // redner(){
-    //     return this.root
-    // }
-
-    // mountTo(parent){
-    //     parent.appendChild(this.root)
-    // }
-
-
 }
 export class ElementWrapper extends Component{
     constructor(type){
@@ -184,34 +158,6 @@ export class Answer extends Component {
     }
 }
 
-// export class Display_button extends Component {// parent and class
-//     constructor() {
-//         super()
-//         this.attributes = new Object(null)
-//         this.root = document.createElement("button")
-//     }
-
-//     render() {
-//         this.root.appendChild(document.createTextNode("Answer"))// parent and class
-//         if (this.attributes.class) this.root.className = this.attributes.class
-//         if (this.attributes.id) this.root.id = this.attributes.id
-//         // this.root.onclick = function () {
-//         //     // console.log(this.attributes)// 在 onclick 里面，找不到this 了
-
-//         //     let parent = this.parentNode
-//         //     let spans = parent.getElementsByTagName("span")
-//         //     for (let s of spans) {
-//         //         if (s.className === this.className) {
-//         //             if (s.style.backgroundColor === "pink") s.style.backgroundColor = "black"
-//         //             else if (s.style.backgroundColor === "black") s.style.backgroundColor = "pink"
-//         //         }
-//         //     }
-//         // }
-
-//         this.root.onclick = new onclikcs().display_ans
-//         return this.root
-//     }
-// }
 export class Button extends Component{
     constructor(){
         super();
@@ -244,7 +190,7 @@ export class Sign_workspace extends Component{
 
     render() {
         this.root.style.width = "1500px"
-        this.root.style.height = "20000px"
+        this.root.style.height = "2000px"
         this.root.contentEditable = true
         this.root.style.border = "1px solid black"
         this.root.style.marginTop = "100px"

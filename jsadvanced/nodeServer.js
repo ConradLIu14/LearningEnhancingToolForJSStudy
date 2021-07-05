@@ -1,0 +1,3 @@
+export {aaa}
+
+let aaa = []

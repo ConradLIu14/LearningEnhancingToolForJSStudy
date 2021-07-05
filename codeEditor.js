@@ -30,7 +30,7 @@ class CodeEditarea extends Component {
         console.log("children", this.root.children)
 
         line.mountTo(this.root)// 底层设计缺陷，必须先render；所以 先moutto render 一下。 可以写一个inserbefore 的方法 中调用render 可以解决
-        if(this.linesSet.length > 1 && count < this.linesSet.length) this.root.insertBefore(line.root, this.linesSet[count].root)
+        if (this.linesSet.length > 1 && count < this.linesSet.length) this.root.insertBefore(line.root, this.linesSet[count].root)
 
         line.focus()
     }
@@ -100,7 +100,7 @@ export class CodeEditorAreaLine extends Component {
         this.currinput = null
         this.codeEditor = null
         this.root = document.createElement('div')
-        this.root.contentEditable = true;
+        // this.root.contentEditable = true;
         this.root.addEventListener("keydown", event => {
             if (event.keyCode === 13) {
                 event.preventDefault();
@@ -110,7 +110,16 @@ export class CodeEditorAreaLine extends Component {
             }
         })
         this.root.tabIndex = -1
-        new MouseLeftOnclick(this.root, this.onclick)
+        // new MouseLeftOnclick(this.root, this.onclick)
+
+        this.line_onfocus = function (e) {
+
+            if (event.button === 0) {
+                let input = <CodeLineInput class="codeLineInput"></CodeLineInput>
+                // console.log("onclick this",this, event)
+                input.mountTo(this.root)
+            }
+        }
 
         this.disaptch = function (count, codeEditor) {
             return function (e) {
@@ -124,25 +133,25 @@ export class CodeEditorAreaLine extends Component {
                 else if (e.keyCode === 8) {
                     let event = new Event("lineBackspace")
                     event["count"] = count
-                    if (this.lastChild === null) { 
-                        codeEditor.root.dispatchEvent(event) 
+                    if (this.lastChild === null) {
+                        codeEditor.root.dispatchEvent(event)
                     }
                 }
-                else if(e.keyCode === 38 ){
-                    if(count === 1) return 
-                    else{
+                else if (e.keyCode === 38) {
+                    if (count === 1) return
+                    else {
                         console.log(this.parentNode.children[count - 2])
                         this.parentNode.children[count - 2].focus()
                     }
                 }
-                else if(e.keyCode === 40 ){
-                    if(count === this.parentNode.children.length) return 
-                    else{
-                        console.log(this.parentNode.children[count ])
+                else if (e.keyCode === 40) {
+                    if (count === this.parentNode.children.length) return
+                    else {
+                        console.log(this.parentNode.children[count])
                         this.parentNode.children[count].focus()
                     }
                 }
-                
+
             }
 
         }
@@ -161,6 +170,15 @@ export class CodeEditorAreaLine extends Component {
         console.log("render", this)
         let func = this.disaptch(count, codeEditor)
 
+        this.root.addEventListener("mouseup", event => {
+            if (event.button === 0) {
+                let input = <CodeLineInput class="codeLineInput"></CodeLineInput>
+                // console.log("onclick this",this, event)
+                input.mountTo(this.root)
+
+            }
+        })
+
         if (this.func === null) {
             this.root.addEventListener("keyup", func)
             this.root.addEventListener("mouseup", func)
@@ -178,9 +196,9 @@ export class CodeEditorAreaLine extends Component {
         console.log(element, event.offsetX, event.offsetY)
     }
 
-    mouseup(event){
+    mouseup(event) {
         // console.log(event.button)
-        if(event.button === 0){
+        if (event.button === 0) {
             console.log("left")
 
         }
@@ -223,6 +241,9 @@ export class CodeLineInput extends Component {
         this.state = "start"
         this.content = ''
         this.root = document.createElement('div')
+        this.root.addEventListener("keyup", event => {
+            // if()
+        })
     }
 
     render() {
@@ -242,14 +263,14 @@ export class CodeLineInput extends Component {
     }
 }
 
-class codeLineInput extends Component{
-    constructor(){
+class codeLineInput extends Component {
+    constructor() {
         this.attributes = Object.create(null)
         // this.root = document.createElement('div')
         this.root = render()
     }
 
-    render(){
+    render() {
         this.root = document.createElement("div")
         this.root.contentEditable = true
         this.root.setAttribute("class", "codeLineInput")
@@ -277,7 +298,7 @@ class CodeEditor extends Component {
 
         for (let key in this.attributes) this.root.setAttribute(key, this.attributes[key])
         let margin = <CodeEditMargin class="codeEditMargin" line_height="24"></CodeEditMargin>// 应该把class 定义到constructor中去。
-        let textArea = <CodeEditarea class="codeEditArea" line_height="24" line_input = {this.input}></CodeEditarea>
+        let textArea = <CodeEditarea class="codeEditArea" line_height="24" line_input={this.input}></CodeEditarea>
         this.margin = margin
         this.textArea = textArea
         margin.mountTo(this.root)

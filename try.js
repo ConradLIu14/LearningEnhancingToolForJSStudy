@@ -1,178 +1,48 @@
-// // {
-// // "use strict";
-// // x = 3.14; 
-// // }
-// // xx = 3.14
+const net = require('net');
 
-// {
-//     let a = [1]
-//     console.log(a.push(2,3,4))
-//     console.log(a)
-// }
+const client = new net.Socket();
 
-// {
-//     function nextInLine(arr, item) {
-//         // Only change code below this line
-//         res = arr.shift()
-//         arr.push(item)
-        
-//         return res;
-//         // Only change code above this line
-        
-      
-//       }
-      
-//       // Setup
-//       var testArr = [1,2,3,4,5];
-      
-//       // Display code
-//       console.log("Before: " + JSON.stringify(testArr));
-//       console.log(nextInLine(testArr, 6));
-//       console.log("After: " + JSON.stringify(testArr));
-// }
+client.connect(8099, 'localhost', function() {
 
-// {
-//     let a = {"a":"aa", "b": "ba"}
-//     let b = {a:"ba", b:"bb"}
-
-//     console.log(a,b)
-//     console.log(a["a"], b["a"], a.a, b.a)
-
-
-// }
-
-// {
-//     function countdown(n){
-//         let curr = n-1
-//         if(curr > 0){
-//           let res =  countdown(curr)
-//           res.unshift(n)
-//           return res
-//         }
-//         else return [1]
-//       }
-
-//     console.log(countdown(10))
-
-
-// }
-
-// {
-//   console.log(" 继承.............................")
-
-//   class grandFather{
-//     constructor(){
-//       this.grand = "grandfather Tom"
-//     }
-//   }
+  console.log('CONNECTED TO: ' + "localhost" + ':' + 8099); // 建立连接后立即向服务器发送数据，服务器将收到这些数据
   
-//   class father extends grandFather{
-//     constructor(){
-//       super()
-//       this.father = "father David"
-//     }
-//   }
-
-//   class son extends father {
-//     constructor(a){
-//       super()
-//       this.son = " son Sam"
-//       this.target = a
-//     }
-//   }
-
-//   let a = new son("xxx")
-
-//   console.log(a)
-// }
-
-{
-  console.log("...........................................................")
-  // let s = "11 p2 s3 p4"
-  let s = "l1 sp sp2 s3"
-  let regExp = /sp[0-9]+/g
-  console.log(s.match(regExp))
-  let a = s.match(regExp)[0]
-
-  a = a[1,a.length-1]
-  console.log(a)
-}
-{
-  let obj = {
-    a: "a",
-    a:"b",
-  }
-  console.log(obj,obj.a)
-}
-
-{
-  console.log("dog ..........................")
-  function Dog() {
-    this.name = "Rupert";
-    this.color = "brown";
-    this.numLegs = 4;
-  }
-  // Only change code below this line
-  let d = new Dog()
-  console.log(d)
-  function dog() {
-    this.name = "Rupert";
-    this.color = "brown";
-    this.numLegs = 4;
-  }
-  // Only change code below this line
-  let dd = new dog()
-  console.log(dd)
-}
-
-{
-  function Cat(name) {
-    this.name = name;
-  }
+  client.write('I am client!');
   
-  Cat.prototype = {
-    constructor: Cat,
-  };
+  });
+
+client.on('error', function(err){
+    client.destroy()
+  })
   
-  function Bear(name) {
-    this.name = name;
-  }
+var the_data = null
+client.on('data', function(data) {
   
-  Bear.prototype = {
-    constructor: Bear,
+  the_data = data.toString("utf-8")
+  console.log(the_data)
+  });
   
-  };
+client.on('close', function() { console.log('Connection closed');}); //关闭回调
   
-  function Animal() { }
+setTimeout(() => {
+  // console.log(the_data)
+  // console.log( typeof the_data)
+  // var json = JSON.parse(the_data)
+  // console.log(json)
+  console.log(`<!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Try2</title>
+  </head>
+  <body>
+       ${the_data}
+  </body>
+  </html>`)
   
-  Animal.prototype = {
-    constructor: Animal,
-    eat: function() {
-      console.log("nom nom nom");
-    }
-  };
-
-  let c1 = new Cat()
-  console.log(c1.constructor, c1.prototype, Cat.prototype)
-}
-
-{
-  function Animal(name) { 
-    this.name = name
-   }
-
-let A = new Animal("dog")
-let B = new Animal("cat")
-console.log(A,A.constructor, A.constructor === B.constructor, A.prototype)
-
-}
+}, 100);
 
 
 
-{
-  let classes = "aa b c d"
-  let regExp = /[\S]+/g
-  // let regExp = /\S+/g
-
-  console.log(classes.match(regExp))
-}
+// console.log(the_data) // 异步的所以无法...

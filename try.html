@@ -1,84 +1,83 @@
-<html>  
-  <head>  
-    <title>js24 try.html</title>  
-      
-    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
-    <meta http-equiv="description" content="this is my page">  
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">  
-      	<style>
-		.codeEditLine {
-            /* 禁止换行下下下下下下下下下下 */
-            /* display:inline; */
-            /* white-space: normal;
-            text-overflow: ellipsis; */
-            /* 禁止换行上上上上上上上 */
-            height: 24px;
-			width: 100px;
-            border: 1px soild blue;
+<html>
+
+<head>
+    <title>js24 try.html</title>
+
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <style>
+        .trafficlights {
+            display: flex;
+            /* flex-direction: row; */
+            height: 100px;
+            width: 300px;
+
         }
 
-		.a {
-            /* 禁止换行下下下下下下下下下下 */
-            display:inline;
-            float:left;
-            /* white-space: normal;
-            text-overflow: ellipsis; */
-            /* 禁止换行上上上上上上上 */
-            height: 24px;
-			width: 100px;
-            border: 1px soild red;
+        .trafficlight {
+            height: 100px;
+            width: 100px;
+            border: 1px solid black;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <script type="text/javascript">
+        let trafficlights = document.createElement("div")
+        document.body.appendChild(trafficlights)
+        let light_green = document.createElement("div")
+        let light_yellow = document.createElement("div")
+        let light_red = document.createElement("div")
+        light_green.setAttribute("class", "trafficlight")
+        light_yellow.setAttribute("class", "trafficlight")
+        light_red.setAttribute("class", "trafficlight")
+
+        trafficlights.appendChild(light_green)
+        trafficlights.appendChild(light_yellow)
+        trafficlights.appendChild(light_red)
+        trafficlights.setAttribute("class", "trafficlights")
+
+        let p = new Promise((resolve) => {
+            light_green.style.backgroundColor = "green"
+            setTimeout(() => {
+                resolve()
+            }, 2000);
+        })
+
+        function traffic_toggle(){
+            p.then(() => new Promise((resolve) => {
+            for (let child of trafficlights.children) child.style.backgroundColor = "white"
+            console.log("yellow")
+            light_yellow.style.backgroundColor = "yellow"
+            setTimeout(() => {
+                resolve()
+            }, 1000);
+        })).then(() => new Promise((resolve) => {
+            for (let child of trafficlights.children) child.style.backgroundColor = "white"
+            console.log("red")
+            light_red.style.backgroundColor = "red"
+            setTimeout(() => {
+                resolve()
+            }, 3000);
+        })).then(() => new Promise((resolve) => {
+            for (let child of trafficlights.children) child.style.backgroundColor = "white"
+            console.log("green")
+            light_green.style.backgroundColor = "green"
+            setTimeout(() => {
+                resolve()
+            }, 2000);
+        }))
         }
 
-		.b {
-            /* 禁止换行下下下下下下下下下下 */
-            display:inline;
-            float:left;
-            /* white-space: normal;
-            text-overflow: ellipsis; */
-            /* 禁止换行上上上上上上上 */
-            height: 24px;
-			width: 50px;
-            border: 1px soild blue;
-        }
-		
-		.c {
-            /* 禁止换行下下下下下下下下下下 */
-            display:inline;
-            float:left;
-            /* white-space: normal;
-            text-overflow: ellipsis; */
-            /* 禁止换行上上上上上上上 */
-            height: 24px;
-			width: 50px;
-            border: 1px soild blue;
-        }
-		
+        setInterval(traffic_toggle, 6000)
+        
+    </script>
 
-	</style>
-      
- 
-  </head>  
-    
-  <body>  
-	  <script type="text/javascript">
-		  let a = document.createElement("div")
-		  a.setAttribute("class", "a")
-        //   a.classList.add("a")
-		  let b = document.createElement("div")
-		  b.setAttribute("class", "b")
-		  let c = document.createElement("div")
-		  c.setAttribute("class", "c")
 
-		  document.body.appendChild(a)
-		  a.appendChild(b)
-          b.addEventListener("mouseup", event=>{
-              console.log("b mouseup")
-          })
-		  a.removeChild(a.lastChild)
-		  a.appendChild(c)
-		  a.appendChild(b)
-          a.appendChild(c)
-        // b.appendChild(a)
-	  </script>
-  </body>  
-</html> 
+</body>
+
+</html>

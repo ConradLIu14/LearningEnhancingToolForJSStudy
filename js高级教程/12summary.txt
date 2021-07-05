@@ -1,0 +1,6 @@
+p1. BOM 核心  #qs:( window object )#qs;  window的四大对象： #qs:( location 对象 )#qs ; #qs:( navigator对象 )#qs ; #qs:( screen 对象 )#qs ; #qs:( history对象 )#qs
+
+p2. 以通过var声明 的所有#qs:( 全局变量和函数 )#qs都会变成window对象的#qs:( 属性和方法 )#qs; 如果在这里使用let或const替代var，则#qs:( 不会把变量添加给全局对象 )#qs： 
+
+p3. 窗口关系: 两个相关对象：#qs:( top )#qs； #qs:( parent )#qs ; 
+

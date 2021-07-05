@@ -2,10 +2,10 @@ import io
 import sys
 import json
 sys.stdout=io.TextIOWrapper(sys.stdout.buffer,encoding='utf8')
+# qs1
 
-
-d = ["./winterjs/1js类型.txt", "./winterjs/2js对象.txt", "./winterjs/3js模拟类.txt"]
-d_i = 0
+d = ["./winterjs/1js类型.txt", "./winterjs/2js对象.txt", "./winterjs/3js模拟类.txt", "./js高级教程/12BOM.txt"]
+d_i = 3
 dest = "./JSONProblemSets/"
 print("the d[0] is", d[0])
 
@@ -109,7 +109,7 @@ for i in dictionary:
 # indent 超级好用，格式化保存字典，默认为None，小于0为零个空格
 # f.write(json.dumps(dict, indent=4))
 # json.dump(dict, f, indent=4)  # 传入文件描述符，和dumps一样的结果
-d_json = ["./winterjs/1js类型.JSON", "./winterjs/2js对象.JSON", "./winterjs/3js模拟类.JSON"]
+d_json = ["./winterjs/1js类型.JSON", "./winterjs/2js对象.JSON", "./winterjs/3js模拟类.JSON", "./js高级教程/12BOM.JSON"]
 with open(d_json[d_i], "w", encoding="utf-8") as f:
     json.dump(dictionary, f , indent=4, ensure_ascii=False)
 j = json.dumps(dictionary, indent=4, ensure_ascii=False)
@@ -122,6 +122,8 @@ for i in ptry:
     print(i)
 
 
+
+"第 2 章　HTML中的JavaScript"
 
 
 
