@@ -18,6 +18,7 @@ export class Component{
         // this.root = this.render();
         this.parentElement = null
         this.parentNode = null
+        this.attributes = new Object(null)
         
     }
 
@@ -52,6 +53,7 @@ export class Component{
     }
 
     render(){
+        this.setAllAttributes()
         return this.root
     }
 
@@ -59,6 +61,10 @@ export class Component{
         this.root.addEventListener(type, event)
     }
 
+    setAllAttributes(){
+        if (this.attributes.name) this.root.setAttribute("name", this.attributes.name)
+        if (this.attributes.class) this.root.setAttribute("class", this.attributes.class)
+        if (this.attributes.id) this.root.setAttribute("id", this.attributes.id)}
 }
 
 class TextWrapper extends Component{
@@ -76,10 +82,6 @@ export class ElementWrapper extends Component{
     
     // redner(){
     //     return this.root
-    // }
-
-    // mountTo(parent){
-    //     parent.appendChild(this.root)
     // }
 
 

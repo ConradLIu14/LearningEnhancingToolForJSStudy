@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let iframe_try = document.createElement("iframe")
+        iframe_try.style.width = "1000px"
+        iframe_try.style.height = "100px"
+        iframe_try.backgroundColor = "blue"
+        iframe_try.name = "iframe"
+        iframe_try.style.position = "fixed"
+        iframe_try.style.top = "0px"
+        iframe_try.style.left = "0px"
+
+        let place_holder_div = document.createElement("div")
+        place_holder_div.style.width = "1000px"
+        place_holder_div.style.height = "2000px"
+        place_holder_div.style.backgroundColor = "pink"
+
+
+        let form_try = document.createElement("form")
+        form_try.target = 'iframe'
+        form_try.action = "http://localhost:8109"
+        
+        let butt = document.createElement("button")
+        butt.height = "50px"
+        butt.width = "100px"
+        butt.appendChild(document.createTextNode("Submit"))
+        let butt_onclick = () => {
+            console.log(form_try)
+            form_try.submit()
+        }
+
+        butt.onclick = butt_onclick
+
+        let butt_clear = document.createElement("button")
+        butt_clear.height = "50px"
+        butt_clear.width = "100px"
+        butt_clear.appendChild(document.createTextNode("Submit"))
+        let clear_onclick = () => {
+            console.log(form_try)
+            form_try.submit()
+        }
+
+        butt.onclick = clear_onclick
+
+
+        document.body.appendChild(form_try)
+        document.body.appendChild(place_holder_div)
+        document.body.appendChild(iframe_try)
+        document.body.appendChild(butt)
+        // iframe_try
+        
+
+
+    </script>
+    
+</body>
+</html>

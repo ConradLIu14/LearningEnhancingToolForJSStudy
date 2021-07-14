@@ -1,3 +1,5 @@
 upload update: git push -u remote_button button
 
 download update: git clone git@github.com:ConradLIu14/LearningEnhancingToolForJSStudy.git
+
+fetch online branch and merge: 

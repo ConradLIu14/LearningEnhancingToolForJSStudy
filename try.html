@@ -7,19 +7,12 @@
     <meta http-equiv="description" content="this is my page">
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <style>
-        .trafficlights {
-            display: flex;
-            /* flex-direction: row; */
-            height: 100px;
-            width: 300px;
-
-        }
-
-        .trafficlight {
-            height: 100px;
+        .butt {
             width: 100px;
-            border: 1px solid black;
+            height: 50px;
+
         }
+        
     </style>
 
 
@@ -27,54 +20,98 @@
 
 <body>
     <script type="text/javascript">
-        let trafficlights = document.createElement("div")
-        document.body.appendChild(trafficlights)
-        let light_green = document.createElement("div")
-        let light_yellow = document.createElement("div")
-        let light_red = document.createElement("div")
-        light_green.setAttribute("class", "trafficlight")
-        light_yellow.setAttribute("class", "trafficlight")
-        light_red.setAttribute("class", "trafficlight")
+    let sub_form = document.createElement("form")
+    sub_form.action = "http://localhost:8109"
+    sub_form.method = "Post"
+    // sub_form.acceptCharset = "GBK"
+    // sub_form.enctype = "text/plain" // !!!!!!!!!!!!!!!!!!!!!!!!!!!
+    let submit_butt = document.createElement("button")
 
-        trafficlights.appendChild(light_green)
-        trafficlights.appendChild(light_yellow)
-        trafficlights.appendChild(light_red)
-        trafficlights.setAttribute("class", "trafficlights")
+    submit_butt.style.width = "100px"
+    submit_butt.style.height = "50px"
+    // submit_butt_onclick = () => {
+    //     console.log("submit")
+    //     sub_form.submit()
+    //     // return true
+    // }
+    // submit_butt.onclick = submit_butt_onclick
+    submit_butt.appendChild(document.createTextNode("submit"))
+    document.body.appendChild(submit_butt)
+    document.body.appendChild(sub_form)
 
-        let p = new Promise((resolve) => {
-            light_green.style.backgroundColor = "green"
-            setTimeout(() => {
-                resolve()
-            }, 2000);
-        })
 
-        function traffic_toggle(){
-            p.then(() => new Promise((resolve) => {
-            for (let child of trafficlights.children) child.style.backgroundColor = "white"
-            console.log("yellow")
-            light_yellow.style.backgroundColor = "yellow"
-            setTimeout(() => {
-                resolve()
-            }, 1000);
-        })).then(() => new Promise((resolve) => {
-            for (let child of trafficlights.children) child.style.backgroundColor = "white"
-            console.log("red")
-            light_red.style.backgroundColor = "red"
-            setTimeout(() => {
-                resolve()
-            }, 3000);
-        })).then(() => new Promise((resolve) => {
-            for (let child of trafficlights.children) child.style.backgroundColor = "white"
-            console.log("green")
-            light_green.style.backgroundColor = "green"
-            setTimeout(() => {
-                resolve()
-            }, 2000);
-        }))
-        }
+    let submit_target = document.createElement("iframe")
+    submit_target.style.width = "300px"
+    submit_target.style.height = "100px"
+    submit_target.name = "submit_target"
+    
 
-        setInterval(traffic_toggle, 6000)
-        
+    document.body.appendChild(submit_target)
+
+    sub_form.target = "submit_target"
+
+
+    let submit_textarea = document.createElement("textarea")
+    submit_textarea.appendChild(document.createTextNode("submit content"))
+    submit_textarea.appendChild(document.createElement("span"))
+    submit_textarea.name = "submit_text"
+
+
+    sub_form.appendChild(submit_textarea)
+
+    // sub_form.submit()
+
+    let div_data = document.createElement("div")
+
+    div_data.isContentEditable = true
+    div_data.appendChild(document.createTextNode("submit 数据"))
+    let span1 = document.createElement("span")
+    span1.appendChild(document.createTextNode("span"))
+    span1.style.color = "red"
+    div_data.appendChild(span1)
+    document.body.appendChild(div_data)
+    // div_data.appendChild(document.createElement("span"))
+
+    submit_butt_onclick = () => {
+        console.log("submit")
+        // console.log(div_data.innerHTML.toString())
+        // console.log(div_data.innerText)
+        // console.log(div_data.children)
+        let str_content = div_data.innerText.toString()
+        let str_node = document.createTextNode(str_content)
+        submit_textarea.appendChild(str_node)
+        sub_form.submit()
+        // sub_form.remove(str_content)
+        // return true
+    }
+    submit_butt.onclick = submit_butt_onclick
+
+    clear_butt_onclick = () => {
+        console.log("clear",submit_textarea)
+    
+        submit_textarea.innerHTML = ''
+    }
+
+    let clear_butt = document.createElement("button")
+    clear_butt.setAttribute("class", "butt")
+    clear_butt.appendChild(document.createTextNode("clear"))
+    clear_butt.onclick = clear_butt_onclick
+    document.body.appendChild(clear_butt)
+    </script>
+
+    <script>
+        let text1 = document.createElement("textarea")
+        let text2 = document.createElement("textarea")
+        text1.appendChild(document.createTextNode("text1"))
+        text2.appendChild(document.createTextNode("text2"))
+        text1.name = "text1"
+        text2.name = "text2"
+        let the_form = document.createElement("form")
+        the_form.method = "Post"
+        the_form.action = "http://localhost:8109"
+        the_form.appendChild(text1)
+        the_form.appendChild(text2)
+        document.body.appendChild(the_form)
     </script>
 
 

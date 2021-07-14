@@ -1,0 +1,36 @@
+.sign_advanced{
+    width: 1500px;
+    border: 1px;
+    margin-top: 10px;
+}
+
+.block{
+    display: flex;
+    flex-direction: column;
+    width: 1500px;
+    border: solid 1px black;
+}
+
+.submit_button{
+    height: 20px;
+    width: 80px;
+}
+
+.submit_target{
+    height: 200px;
+    width: 150px;
+    position:fixed;
+    z-index: 10px;
+    top:0px;
+    right: 0px;
+    background: white;
+}
+
+.iframe_button{
+    height: 20px;
+    width: 80px;
+    position: fixed;
+    top:20px;
+    left: 0px;
+}
+
