@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .parent {
+            width: 100px;
+            /* height: 800px; */
+            display: flex;
+            position: fixed;
+            flex-direction: column;
+            border: 1px solid blue;
+        }
+        .children{
+            width: 100px;
+            height: 50px;
+            border: solid 1px black;
+
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let parent = document.createElement("div")
+        parent.classList.add("parent")
+        document.body.appendChild(parent)
+
+        let child1 = document.createElement("button")
+        child1.classList.add("children")
+        let chidl2 = document.createElement("button")
+        chidl2.classList.add("children")
+        parent.appendChild(child1)
+
+        parent.appendChild(chidl2)
+
+    </script>
+</body>
+</html>

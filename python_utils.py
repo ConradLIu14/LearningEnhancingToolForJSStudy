@@ -61,7 +61,7 @@ def process_problem(s:str):
     while curr != -1:
         t_index = s.find(":")
         t = s[:t_index]
-        if t == "#qs1":
+        if t == "#qs2":
             t = "TextBox"
         else:
             t = "UnderLine"
