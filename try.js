@@ -107,3 +107,4 @@ function parse(text_parse) {
 let text = 'q. #文档对象模型（DOM，Document Object Model）是#*qs1:( HTML和XML文档的编程接口 )*qs#。DOM表示#*qs1:( 由多层节点构成的文档 )*qs#，通过它开发者可以#*qs1:( 添加、删除和修改 )*qs#页面的各个部分。脱胎于网景和微软早期的动态HTML（DHTML，Dynamic HTML），DOM现在是真正跨平台、语言无关的表示和操作网页的方式。 submit'
 
 parse(text)
+

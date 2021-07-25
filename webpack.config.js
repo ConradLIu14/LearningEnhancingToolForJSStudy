@@ -1,8 +1,8 @@
 module.exports = {
-    // entry: './main.js',
+    entry: './main.js',
     // entry: './codeEditor.js',
     // entry: './jsadvanced/parse.js',
-    entry: './jsadvanced/parse_main.js',
+    // entry: './jsadvanced/parse_main.js',
 
     module: {
         rules: [

@@ -195,7 +195,7 @@ class Block extends Component {
         let res = ''
         for (let line of lines) {
             res += line.textContent.toString()
-            
+
         }
         return res
     }
@@ -241,6 +241,9 @@ export class Submit extends Component {
             console.log(this.root)
             console.log(this.textarea.textContent.toString())
             let text_submit = this.textarea.textContent.toString()
+            let parse = this.parse(text_submit)
+            this.textarea.innerHTML = ''
+            this.textarea.appendChild(document.createTextNode(JSON.stringify(parse)))
 
             this.root.submit()
             // this.textarea.innerHTML = ''
@@ -458,6 +461,16 @@ export class Block_Canvase extends Component {// object(obj) is necessary//
         }
         travse(this.attributes.obj, section_count)
     }
+
+    submit_all() {
+        // document.body.appendChild(this.attributes.__submit)
+        // let submit = this.attributes.__submit
+        // for(let block of this.blocks){
+        //     submit.textarea.appendChild()
+        // }
+        // submit.button.click()
+        alert("not implement")
+    }
 }
 
 
@@ -632,12 +645,14 @@ export class Dispaly_handler {
         this.butts = []
         this.dispaly_state = 0
         this.preview_state = 0
+
+        
     }
 
-    start(parent, iframe_submit_target, preview_target) {
-        if (!arguments[0]) parent = document.body
-        if (!arguments[1]) this.iframe_submit_target = iframe_submit_target
-        if (!arguments[2]) this.div_preview_target = preview_target
+    start(curr_canvase, parent, iframe_submit_target, preview_target ) {
+        if (!arguments[1]) parent = document.body
+        if (!arguments[2]) this.iframe_submit_target = iframe_submit_target
+        if (!arguments[3]) this.div_preview_target = preview_target
 
         this.iframe.name = iframe_submit_target
         let size_toggle = () => {
@@ -681,6 +696,11 @@ export class Dispaly_handler {
             }
         }
 
+        let submit_all = () => {
+            curr_canvase.submit_all()
+
+        }
+
         let preview_onblur = () => {
             
             
@@ -715,8 +735,14 @@ export class Dispaly_handler {
         preview_butt.appendChild(document.createTextNode("preview"))
         preview_butt.onclick = preview_size_toggle
 
+        let submit_all_butt = document.createElement("button")
+        submit_all_butt.classList.add("iframe_button")
+        submit_all_butt.appendChild(document.createTextNode("submit all"))
+        submit_all_butt.onclick = submit_all
+
         this.add_button(preview_butt)
         this.add_button(display_butt)
+        this.add_button(submit_all_butt)
         // this.butt_box.appendChild(display_butt)
         console.log(this.butts)
         for (let butt of this.butts) {
