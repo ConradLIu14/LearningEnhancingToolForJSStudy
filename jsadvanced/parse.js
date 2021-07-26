@@ -13,22 +13,22 @@ class Sign_advanced_workspace extends Component {// 1 for underline 2 for textar
         this.init_text = ""
     }
 
-    render() {
-        this.setAllAttributes()
+    render( ) {
+        this.setAllAttributes( )
         this.root.style.width = "1500px"
         this.root.style.border = "1px solid black"
         this.root.style.marginTop = "10px"
 
-        this.init_text = this.root.innerText.toString()
+        this.init_text = this.root.innerText.toString( )
         this.root.contentEditable = true
         let events = this.keydownEvents
         let is_added = 0
         let mouseup = event => {
-            if (event.button === 0 && window.getSelection().toString()) {
+            if (event.button === 0 && window.getSelection( ).toString( )) {
 
                 let pressUp = event => {
-                    if (events) this.root.removeEventListener("keydown", events.pop())
-                    if (events) this.root.removeEventListener("keyup", events.pop())
+                    if ( events ) this.root.removeEventListener("keydown", events.pop())
+                    if ( events ) this.root.removeEventListener("keyup", events.pop())
                     is_added = 0
                 }
                 let keyDown = event => {
@@ -36,14 +36,14 @@ class Sign_advanced_workspace extends Component {// 1 for underline 2 for textar
                     if (is_added === 0) {
                         if ((event.key === "(" || event.key === "（") && event.shiftKey) {
                             console.log("trigger")
-
+                            
                             let string = selection.toString()
                             string = "#*qs:( " + string + " )*qs#"
                             let sp = document.createElement("span")
                             sp.style.color = "red"
-                            sp.appendChild((document.createTextNode(string)))
+                            sp.appendChild((document.createTextNode( string )))
 
-                            console.log(string)
+                            console.log( string )
                             let range = selection.getRangeAt(0)
                             console.log("the ranges are ", range.toString(), range)
                             range.deleteContents()
@@ -90,7 +90,7 @@ class Sign_advanced_workspace extends Component {// 1 for underline 2 for textar
                             let sp = document.createElement("span")
                             sp.style.color = "red"
                             sp.appendChild((document.createTextNode(string)))
-
+                            
                             console.log(string)
                             let range = selection.getRangeAt(0)
                             console.log("the ranges are ", range.toString(), range)
@@ -178,13 +178,11 @@ class Block extends Component {
             // let str_content = str.toString()
             let head = this.root.children[0].textContent.toString()
 
-
             this.attributes.__submit.textarea.appendChild(document.createTextNode(head + "#" + str.toString()))
             let preview_parent = document.getElementsByClassName("preview_target")[0]
             if(preview_parent.parentNode === document.body){
                 document.getElementsByClassName("iframe_button")[0].click()
             }
-
         }
         this.header.onfocus = on_focuse
         return this.root
@@ -194,8 +192,12 @@ class Block extends Component {
         let lines = this.root.getElementsByClassName(this.root.id)
         let res = ''
         for (let line of lines) {
-            res += line.textContent.toString()
-
+            let curr_str = line.textContent.toString()
+            res += curr_str
+            if(curr_str.length < 3){
+                res += "\r\n\r\n"
+            }
+        
         }
         return res
     }
@@ -233,7 +235,6 @@ export class Submit extends Component {
         if (this.attributes.target) submit_name = this.attributes.target
         else submit_name = "submitForm0"
 
-
         // this.iframe.name = submit_name
         this.root.target = this.attributes.target
 
@@ -254,25 +255,23 @@ export class Submit extends Component {
 
         let parse_onclick = () => {
             let text_content = this.textarea.textContent.toString()
-            let parse = this.parse(text_content)
-            let paper = <Paper problems={[parse]} class={"parse"}></Paper> 
-            // let the_frame = document.getElementsByClassName("submit_target")[0]
+            // let parse = this.parse(text_content)
+            // let paper = <Paper problems={[parse]} class={"parse"}></Paper> 
+            // ------------------------------------
+
+            // ---------------------------------------
             console.log("parse", [parse])
             let preview_parent = document.getElementsByClassName("preview_target")[0]
             preview_parent.focus()
             // paper.mountTo(this.root.parentNode)
             preview_parent.innerHTML = ''
             paper.mountTo(preview_parent)
-
-
         }
 
         submit_button.onclick = submit_onclick
         this.parse_button.onclick = parse_onclick
         this.root.appendChild(submit_button)
         this.root.appendChild(this.parse_button)
-
-        // this.iframe.html.body.appendChild(this.root)
 
         return this.root
     }
@@ -288,9 +287,11 @@ export class Submit extends Component {
                 res.push({problem_index:curr_str}, {content:[]})
                 curr_str = ''
             }
+            else if(c === "\n"){
+                
+            }
             else curr_str += c
         }
-    
     
         function state1_readstring (c) {
             if(c === "#") {
@@ -340,7 +341,6 @@ export class Submit extends Component {
             else{
                 curr_str += c
             }
-    
         }
     
         function state5_readTagEndComfirm(c){
@@ -368,21 +368,16 @@ export class Submit extends Component {
                 curr_str += c
             }
         }
-    
+
         for(let c of text_parse){
             state(c)
         }
-        splits.push(res)
+        // splits.push(res)
         res[1].content.push({type: "string", string: curr_str})
+        console.log("res", res)
+        // console.log("splits", splits)
         return res    
-        // state = 0
-    
-        // for(let split of splits){ // 这是为了更复杂的情况设计的，暂时用不到
-        //     if 
-        // }
     }
-
-
 }
 
 export class Block_Canvase extends Component {// object(obj) is necessary// 
@@ -413,7 +408,6 @@ export class Block_Canvase extends Component {// object(obj) is necessary//
                 travse(section.children[i], section_count)
                 section_count.pop()
             }
-
         }
         travse(this.attributes.obj, section_count)
 

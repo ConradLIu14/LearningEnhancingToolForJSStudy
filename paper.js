@@ -4,8 +4,8 @@ import { Component, createElement } from "./framework.js"
 export class Paper extends Component {// 开头必须大写 
     constructor() {
         super();
-        this.attributes = Object.create(null)// 必须有 this.attributes.problems 才可以生成，单独生成一个
-        this.activated_problems = null// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        this.attributes = Object.create(null) // 必须有 this.attributes.problems 才可以生成，单独生成一个
+        this.activated_problems = null // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         this.problems_handler = new Onclicks()
 
         this.root = document.createElement('div')
@@ -38,6 +38,15 @@ export class Paper extends Component {// 开头必须大写
             this.hide_all_answers()
         }
         this.root.appendChild(Hide_all)
+
+        let reset_all = document.createElement("button")
+        reset_all.appendChild(document.createTextNode("reset all"))
+        reset_all.onclick = (e) =>{
+            problem_index = 0; question_index = 0
+            this.hide_all_answers()
+            this.reset_all_answers()
+        }
+        this.root.appendChild(reset_all)
 
         if (this.attributes.problems === undefined) {// 如果没有problem 就返回一个空的 
             this.root.style.height = "100px"
@@ -110,6 +119,12 @@ export class Paper extends Component {// 开头必须大写
     hide_all_answers() {
         for(let p of this.problems){
             this.problems_handler.hide_allans(p.root)
+        }
+    }
+
+    reset_all_answers(){
+        for(let p of this.problems){
+            this.problems_handler.reset_all(p.root)
         }
     }
 }

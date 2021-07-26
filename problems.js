@@ -1,4 +1,5 @@
 // import { electron } from "webpack";
+// import { ExternalModule } from "webpack";
 import { Component, createElement, Underline, TextBox, Answer, Button } from "./framework.js"
 
 const QUESTIONS = Symbol("questions")
@@ -74,6 +75,9 @@ export class Problem extends Component {// ques={question_array} ans={answer_arr
         let hide_all_button = <Hide_all_button></Hide_all_button>
         hide_all_button.mountTo(this.root)
 
+        let reset_all_button = <Reset_all_button></Reset_all_button>
+        reset_all_button.mountTo(this.root)
+
 
 
         return this.root
@@ -110,8 +114,8 @@ export class Onclicks{// in problem blocks； just for questions in one problem
         let regExp =   /ans[0-9]+/g
         for (let s of spans) {
             let ClassNumber = s.className.match(regExp)[0]
-            ClassNumber = ClassNumber[3, ClassNumber.length - 1]
-            if (ClassNumber === className) {
+            ClassNumber = ClassNumber.slice(3, ClassNumber.length)
+            if (ClassNumber && ClassNumber === className) {
                 if (s.style.backgroundColor === "pink") s.style.backgroundColor = "black"
                 else if (s.style.backgroundColor === "black") s.style.backgroundColor = "pink"
             }
@@ -135,6 +139,13 @@ export class Onclicks{// in problem blocks； just for questions in one problem
                 if (s.style.backgroundColor === "pink") s.style.backgroundColor = "black"
         }
     }
+
+    reset_all(element){
+        let inputs = element.getElementsByTagName("input")
+        for(let input of inputs){
+            input.value = ''
+        }
+    }
 }
 
 class Display_button extends Button{
@@ -143,10 +154,9 @@ class Display_button extends Button{
         this.onclick = () => {
             let parent = this.root.parentNode
             let regExp =   /butt[0-9]+/g
-            let ClassNumber = this.root.className.match(regExp)[0]
-            ClassNumber = ClassNumber[4,ClassNumber.length - 1]
-            
-            new Onclicks().display_ans(parent, ClassNumber)
+            let className = this.root.className.match(regExp)[0]
+            className = className.slice(4, className.length)
+            new Onclicks().display_ans(parent, className)
         }
         this.text = "Show/Hide"
     }
@@ -162,6 +172,17 @@ class Show_all_button extends Button{
     } 
     this.text = "Display All"
     }
+}
+
+class Reset_all_button extends Button{
+    constructor(){
+        super()
+        this.onclick = (e) => {
+            let parent = this.root.parentNode
+            new Onclicks().reset_all(parent)
+        } 
+        this.text = "Reset All"
+        }
 }
 
 class Hide_all_button extends Button{
